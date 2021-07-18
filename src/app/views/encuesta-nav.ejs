@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://raw.githubusercontent.com/calypsobronte/accion-comunal/master/images/png/logo-ico.png?token=AEPC7ZEPGKSRJSZUFUM3OWLA7SQUY" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <% if (login) {%>
+            <a href="dashboard" class="navbar-brand mx-auto">Bienvenido/a <%= name %> a la Plataforma JAL Los
+                    Tanques</a>
+            <% if (rol==='administrador'  ||  rol==='encuestador') {%>
+                <h4 class="text-white">
+                    <%= rol %> &nbsp;&nbsp;&nbsp;&nbsp;
+                </h4>
+            <%}%>
+            <a href="/dashboard" class="btn btn-secondary"> Volver</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%}%>
+    </nav>
+    <h1>Crear encuesta</h1>
+    <div class="register-form">
+        <form action="encuesta" method="POST">
+            <br><br>
+            <label for="name">Nombres* </label>
+            <input type="text" name="name" placeholder="Nombres" required>
+            <label for="lastName">Apellidos* </label>
+            <input type="text" name="lastName" placeholder="Apellidos" required>
+            <label for="email">Correo electronico* </label>
+            <input type="text" name="email" placeholder="Correo electronico" required>
+            <br><br>
+            <label for="typeDocument">Tipo de documento* </label>
+            <select id="typeDocument" name="typeDocument" required>
+                <option value="hide">-- Seleccione tipo de documento --</option>
+                <option value="CC">CC - Cedula de Ciudadania</option>
+                <option value="TI">TI - Tarjeta de Identidad</option>
+                <option value="CE">CE - Cedula de Extranjeria</option>
+                <option value="NIT">NIT</option>
+            </select>
+            <br><br>
+            <label for="address">Numero documento de Identidad* </label>
+            <input type="text" name="nroDocument" placeholder="# de documento" required>
+            <label for="address">Direccion de residencia* </label>
+            <input type="text" name="address" placeholder="Direccion" required>
+            <label for="estrato">Estrato* </label>
+            <input type="text" name="estrato" placeholder="estrato" required>
+            <label for="eps">eps* </label>
+            <input type="text" name="eps" placeholder="eps">
+            <label for="tienesSisben">Tiene sisben* </label>
+            <select id="tienesSisben" name="tienesSisben">
+                <option value="hide">-- Seleccione --</option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select><br><br>
+            <label for="grupoDelSisben">Grupo del Sisben al que pertenece* </label>
+            <input type="text" name="grupoDelSisben" placeholder="si la respuesta es afirmativa 'SI' ingresar que grupo del sisben pertenece">
+            <label for="tieneHijos">Tiene hijos* </label>
+            <select id="tieneHijos" name="tieneHijos">
+                <option value="hide">-- Seleccione --</option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select><br><br>
+            <label for="nroHijos">Numero de hijos* </label>
+            <input type="text" name="nroHijos" placeholder="si la respuesta es afirmativa 'SI' ingresar numero de hijos">
+            <label for="mobile">Numero mobil/celular* </label>
+            <input type="text" name="mobile" placeholder="mobil/celular" required>
+            <label for="phone">Numero fijo* </label>
+            <input type="text" name="phone" placeholder="fijo">
+            <label for="nivelEscolar">Nivel de escolaridad* </label>
+            <input type="text" name="nivelEscolar" placeholder="Nivel de escolar">
+            <label for="municipality">Municipio de residencia* </label>
+            <select id="municipality" name="municipality">
+                <option value="hide">-- Seleccione municipio --</option>
+                <option value="MDE">Medellin</option>
+                <option value="BT">Bogota</option>
+            </select><br><br>
+            <label for="department">Departamento de residencia* </label>
+            <select id="department" name="department">
+                <option value="hide">-- Seleccione departamento --</option>
+                <option value="ANT">Antioquia</option>
+                <option value="BT">Bogota</option>
+            </select>
+            <br><br>
+            <label for="neighborhood">Barrio de residencia* </label>
+            <select id="neighborhood" name="neighborhood">
+                <option value="hide">-- Seleccione barrio --</option>
+                <option value="ALT">Altavista</option>
+                <option value="BL">Belen</option>
+                <option value="LT">Los Tanques  </option>
+            </select>
+            <label for="serviciosHogar">Servicios que tiene en el hogar* </label>
+            <select id="serviciosHogar" name="serviciosHogar">
+                <option value="hide">-- Seleccione --</option>
+                <option value="TV">TV</option>
+                <option value="IT">Internet</option>
+                <option value="AA">Agua </option>
+                <option value="EA">Energia </option>
+            </select>
+            <div style="display:inline;">
+              <input type="submit" class="btn-save" value="Guardar">
+            </div>
+        </form>
+        
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <% if (typeof alert != "undefined") {%>
+        <script>
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton: '<%= showConfirmButton %>',
+                timer: '<%= timer %>'
+            }).then(()=>{
+                window.location='/<%= ruta %>'
+            })
+        </script>
+    <%}%>
+</body>
+</html>
