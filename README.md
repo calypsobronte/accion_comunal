@@ -35,6 +35,7 @@ DB_DATABASE = db_database
 ## Autores
 
 * **Lina María Montaño Ramírez** - *Backend Developer* - [calypsobronte](https://github.com/calypsobronte)
+* **Mauricio Jaramillo** - *Frontend Developer*
 
 
 ## Licencia
