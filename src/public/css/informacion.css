@@ -1,0 +1,13 @@
+.row > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+
+.card > div{
+    background: #f2f2f2;
+    padding: 30px;
+    border: 1px solid grey;
+    text-align: center;
+}
