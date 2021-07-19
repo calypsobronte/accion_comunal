@@ -7,7 +7,37 @@ const { NULL } = require("mysql/lib/protocol/constants/types");
 
 module.exports = app => {
     app.get('/', (req, res) => {
-        res.render('../views/home.ejs');
+        if (req.session.loggedin) {
+            res.render("../views/dashboard.ejs", {
+                login: true,
+                name: req.session.name,
+                rol: req.session.rol
+            });
+        } else {
+            res.render('../views/home.ejs');
+        }
+    })
+
+    app.get('/pruebaregistro', (req, res) => {
+        if (req.session.loggedin) {
+            res.render("../views/prueba-registro.ejs", {
+                login: true,
+                name: req.session.name,
+                rol: req.session.rol
+            });
+        } else {
+            res.render('../views/login.ejs');
+        }
+    })
+
+    app.get('/pruebaencuesta', (req, res) => {
+        res.render('../views/prueba-encuesta.ejs');
+    })
+    app.get('/testencuesta', (req, res) => {
+        res.render('../views/prueba-encuesta-full.ejs');
+    })
+    app.get('/test', (req, res) => {
+        res.render('../views/test-encuesta.ejs');
     })
 
     app.get('/list', (req, res) => {
@@ -79,7 +109,7 @@ module.exports = app => {
     //Solicitudes post formulario de registro
     app.post('/encuesta', async (req, res) => {
         if (req.session.loggedin) {
-            let { name,lastName,email,typeDocument,tienesSisben,serviciosHogar,nivelEscolar,phone,nroHijos,grupoDelSisben,tieneHijos,estrato, eps, nroDocument, address, mobile, municipality, department, neighborhood, dateofbirth } = req.body;
+            let { name,lastName,email,typeDocument,tienesSisben,serviciosHogar,nivelEscolar,phone,nroHijos,grupoDelSisben,tieneHijos,estrato, eps, nroDocument, address, mobile, municipality, department, neighborhood, dateofbirth, gender } = req.body;
             console.log(req.body);
             if (tienesSisben === 'hide') {
                 tienesSisben = 'No'
@@ -122,7 +152,8 @@ module.exports = app => {
                 department: department,
                 neighborhood: neighborhood,
                 serviciosHogar:serviciosHogar,
-                dateofbirth: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+                gender: gender,
+                dateofbirth: moment(dateofbirth).format("YYYY-MM-DD HH:mm:ss"),
                 date_create: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
                 nivelEscolar:nivelEscolar,
                 state: true,
@@ -255,6 +286,7 @@ module.exports = app => {
             res.render('../views/login.ejs');
         }
     })
+
     app.get('/register', (req, res) => {
         if (req.session.loggedin) {
             res.render("../views/register.ejs", {
@@ -275,7 +307,7 @@ module.exports = app => {
 
     //Solicitudes post formulario de registro
     app.post('/register', async (req, res) => {
-        const { name, lastName, email, user, password, rol, state, typeDocument, nroDocument, address, mobile, municipality, department, neighborhood, dateofbirth } = req.body;
+        const { name, lastName, email, user, password, rol, typeDocument, nroDocument, address, mobile, municipality, department, neighborhood, dateofbirth, gender} = req.body;
         console.log(req.body);
         if (rol === "NULL") {
             rol = "usuario"
@@ -297,10 +329,11 @@ module.exports = app => {
             municipality: municipality,
             department: department,
             neighborhood: neighborhood,
-            dateofbirth: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+            dateofbirth: moment(dateofbirth).format("YYYY-MM-DD"),
             date_create: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
             state: true,
-            date_update: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+            date_update: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+            gender: gender,
         }, async (error, results) => {
             if (error) {
                 console.log(error);
@@ -318,6 +351,24 @@ module.exports = app => {
         })
     })
 
+    app.post('/contacto', async(req , res)=>{
+       const {nameComplete, email, asunto, mensaje} = req.body;
+       connection.query("INSERT INTO contacto SET?", {
+           nameComplete: nameComplete,
+           email: email,
+           asunto: asunto,
+           mensaje: mensaje,
+           date_create: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+           date_update: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+
+       }, async (error, results) => {
+        if (error) {
+            console.log(error);
+        } else {
+            res.redirect("/");
+        }
+    })
+    })
     app.post('/auth', async (req, res) => {
         const { user, password } = req.body;
         if (user && password) {
