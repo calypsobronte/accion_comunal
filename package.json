@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "autores": ["Lina Maria Montaño Ramirez <codelinamaria@gmail.com> (https://www.linkedin.com/in/calypsobronte/)", "Mauricio Jaramillo <email> (url)"],
+  "autores": [
+    "Lina Maria Montaño Ramirez <codelinamaria@gmail.com> (https://www.linkedin.com/in/calypsobronte/)",
+    "Mauricio Jaramillo <email> (url)"
+  ],
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -13,6 +17,7 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "method-override": "^3.0.0",
     "moment": "^2.29.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
