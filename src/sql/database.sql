@@ -12,6 +12,7 @@ CREATE TABLE usuarios(
     rol VARCHAR(70) NOT NULL, -- se tendra dos roles  [administrador, usuario, encuestador, secretaria, superadmin]
 	typeDocument VARCHAR(70) NOT NULL,
 	nroDocument INT(70) NOT NULL,
+	gender VARCHAR(70) NOT NULL,
 	address VARCHAR(70) NOT NULL,
 	mobile VARCHAR(70) NOT NULL,
 	municipality VARCHAR(70) NOT NULL,
@@ -25,6 +26,9 @@ CREATE TABLE usuarios(
 
 DESCRIBE usuarios;
 
+ALTER TABLE usuarios
+  ADD gender VARCHAR(70) NOT NULL;
+
 CREATE TABLE encuesta(
 	id INT PRIMARY KEY auto_increment NOT NULL,
 	encuestadorId int(11) DEFAULT NULL,
@@ -35,6 +39,7 @@ CREATE TABLE encuesta(
 	email VARCHAR(70) UNIQUE DEFAULT NULL,
 	estrato VARCHAR(70) NOT NULL,
 	eps VARCHAR(70) NOT NULL,
+	gender VARCHAR(70) NOT NULL,
 	tienesSisben VARCHAR(70) NOT NULL,
 	grupoDelSisben VARCHAR(70) NOT NULL,
 	tieneHijos VARCHAR(70) NOT NULL,
@@ -56,6 +61,8 @@ CREATE TABLE encuesta(
 DESCRIBE encuesta;
 
 ALTER TABLE encuesta ADD CONSTRAINT `encuesta_ibfk_1` FOREIGN KEY (`encuestadorId`) REFERENCES usuarios (`id`);
+ALTER TABLE encuesta
+  ADD gender VARCHAR(70) NOT NULL;
 
 CREATE TABLE contacto(
 	id INT PRIMARY KEY auto_increment NOT NULL,
