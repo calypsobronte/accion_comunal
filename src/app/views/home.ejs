@@ -5,8 +5,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="https://raw.githubusercontent.com/calypsobronte/accion-comunal/master/images/png/logo-ico.png?token=AEPC7ZEPGKSRJSZUFUM3OWLA7SQUY" />
+    <link rel="icon"
+        href="https://raw.githubusercontent.com/calypsobronte/accion-comunal/master/images/png/logo-ico.png?token=AEPC7ZEPGKSRJSZUFUM3OWLA7SQUY" />
     <link rel="stylesheet" href="/resources/css/styles.css" />
+    <link rel="stylesheet" href="/resources/css/contacto.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
     <title>Accion comunal los tanques</title>
@@ -15,19 +17,20 @@
 <body class="body-style">
     <!-- ******************** nav ******************** -->
     <nav class="navbar navbar-dark">
-		<div class="container-fluid p-0 justify-content-lg-between justify-content-lg-center">
-			<div
-				class="d-flex col-12 col-sm-12 col-lg-2 justify-content-sm-center  justify-content-lg-between justify-content-center">
-				<a class="navbar-brand"><img class="logo-principal-navbar" src="https://calypsobronte.github.io/accion-comunal/images/png/logo.png" alt="" /></a>
-			</div>
-			<div
-				class="d-flex col-12 col-sm-12  justify-content-lg-end  col-lg-10 justify-content-sm-center m-sm-2 m-lg-0 m-2 justify-content-center">
-				<a href="/informacion" class="btn btn-secondary"> Informacion</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="container-fluid p-0 justify-content-lg-between justify-content-lg-center">
+            <div
+                class="d-flex col-12 col-sm-12 col-lg-2 justify-content-sm-center  justify-content-lg-between justify-content-center">
+                <a class="navbar-brand"><img class="logo-principal-navbar"
+                        src="https://calypsobronte.github.io/accion-comunal/images/png/logo.png" alt="" /></a>
+            </div>
+            <div
+                class="d-flex col-12 col-sm-12  justify-content-lg-end  col-lg-10 justify-content-sm-center m-sm-2 m-lg-0 m-2 justify-content-center">
+                <a href="/informacion" class="btn btn-secondary"> Informacion</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="/noticias" class="btn btn-secondary"> Noticias</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="/login" class="btn btn-secondary"> Inicio de sesion</a>&nbsp;&nbsp;&nbsp;&nbsp;
-			</div>
-		</div>
-	</nav>
+            </div>
+        </div>
+    </nav>
     <!-- ******************** main ******************** -->
     <main class="d-flex flex-column">
         <!-- ******************** section two ******************** -->
@@ -129,9 +132,7 @@
                         </li>
                     </ul>
                     <button class="d-flex btn-join-develop justify-content-center align-items-center"
-                        onclick="location.href='fom/from.html'"> registrate aqui
-
-                        >></button>
+                        onclick="location.href='fom/from.html'"> registrate aqui >></button>
                 </div>
             </article>
 
@@ -166,6 +167,21 @@
             </article>
 
         </section>
+
+        <section>
+            <h1>Contactanos</h1>
+            <form action="contacto" method="POST" class="cf">
+                <div class="half left cf">
+                    <input type="text" id="input-name" name="nameComplete" placeholder="Nombres completos">
+                    <input type="email" id="input-email" name="email" placeholder="correo electronico">
+                    <input type="text" id="input-subject" name="asunto" placeholder="Asunto">
+                </div>
+                <div class="half right cf">
+                    <textarea name="mensaje" type="text" id="input-message" placeholder="Mensaje"></textarea>
+                </div>
+                <input type="submit" value="Submit" id="input-submit">
+            </form>
+        </section>
     </main>
     <!-- ******************** Footer ******************** -->
     <footer class=" row footer-style g-0 mt-3 ">
@@ -173,8 +189,8 @@
         <div class="d-flex col-lg-6 col-md-6 col-sm-12 col-12  justify-content-sm-center mt-5 justify-content-xl-start">
             <div class="d-flex flex-column me-3">
                 <p class="paragraph-footer">JAL los tanques - 2021 todos los derechos reservados</p>
-                <p class="paragraph-footer">Creado por <a href="https://discord.com/invite/programadores"
-                        target="_blank" class="text-community">Lina Montano & Mauricio</a></p>
+                <p class="paragraph-footer">Creado por <a href="informacion" target="_blank" class="text-white">Lina
+                        Montaño & Mauricio Jaramillo</a></p>
             </div>
         </div>
         <!-- ******************** Section - Two - Footer ******************** -->
@@ -186,11 +202,14 @@
                 </p>
                 <div class="d-flex">
                     <a class="me-4" href="https://www.instagram.com/Jal/" target="_blank"><img
-                            src="images/png/instagram.png" alt="Logo de instagram"></a>
-                    <a class="me-4" href="https://twitter.com/Jal" target="_blank"><img src="images/png/twitter.png"
+                            src="https://raw.githubusercontent.com/calypsobronte/accion-comunal/master/images/png/twitter.png?token=AEPC7ZAQHYEVNZVQ5JMQWULA7SPXU"
+                            alt="Logo de instagram"></a>
+                    <a class="me-4" href="https://twitter.com/Jal" target="_blank"><img
+                            src="https://raw.githubusercontent.com/calypsobronte/accion-comunal/master/images/png/instagram.png?token=AEPC7ZCT2MI7FXOPZ3C6G53A7SPV6"
                             alt="Logo de Twitter"></a>
                     <a class="me-4" href="https://www.facebook.com/Jal" target="_blank"><img
-                            src="images/png/facebook.png" alt="Logo de Facebook"></a>
+                            src="https://raw.githubusercontent.com/calypsobronte/accion-comunal/master/images/png/facebook.png?token=AEPC7ZH4HSUHALL3EQYYSNLA7SPUS"
+                            alt="Logo de Facebook"></a>
                 </div>
             </div>
         </div>

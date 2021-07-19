@@ -1,122 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://raw.githubusercontent.com/calypsobronte/accion-comunal/master/images/png/logo-ico.png?token=AEPC7ZEPGKSRJSZUFUM3OWLA7SQUY" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/resources/css/style.css">
-    <link rel="stylesheet" href="/resources/css/styles.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="https://raw.githubusercontent.com/calypsobronte/accion-comunal/master/images/png/logo-ico.png?token=AEPC7ZEPGKSRJSZUFUM3OWLA7SQUY" />
+  <link rel="stylesheet" href="/resources/css/registro.css" />
+  <link rel="stylesheet" href="/resources/css/botones.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <title>Crear usuarios</title>
 </head>
+
 <body>
-    <% if (login) {%>
-        <% if (rol === 'administrador') {%>
-        <h1>Registro de usuarios</h1>
-        <div class="register-form">
-            <form action="register" method="POST">
-                <br><br>
-                <label for="nom">Nombres</label>
-                <input type="text" name="name" placeholder="Nombres" required>
-                <label for="nom">Apellidos</label>
-                <input type="text" name="lastName" placeholder="Apellidos" required>
-                <label for="user">Correo electronico</label>
-                <input type="text" name="email" placeholder="Correo electronico" required>
-                <label for="user">Usuario</label>
-                <input type="text" name="user" placeholder="Usuario o nickname" required>
-                <label for="password">Crear contraseña al usuario</label>
-                <input type= "password" name="password" id="password" placeholder="Contraseña" required>
-                <br>
-                <label for="rol">Con que rol quieres asignar al usuario?</label><br>
-                <input type="radio" name="rol" value="administrador"/> administrador
-                <input type="radio" name="rol" value="superadmin"/> superadmin
-                <input type="radio" name="rol" value="encuestador"/> Encuestador <br>
-                <input type="radio" name="rol" value="secretaria"/> Secretaria
-                <input type="radio" name="rol" value="usuario"/> Usuario
-                <br><br>
-                <label for="typeDocument">Tipo de documento</label>
-                <select id="typeDocument" name="typeDocument">
-                    <option value="hide">-- Seleccione tipo de documento --</option>
+
+  <% if (login) {%>
+    <% if (rol==='administrador' || rol==='superadmin' ) {%>
+      <div class="container">
+        <form action="register" method="POST" id="selection">
+          <div class="row">
+            <h2>Crear cuenta para usuarios</h2>
+            <div class="input-group input-group-icon">
+              <input type="text" name="name" placeholder="Nombres" />
+              <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+              <input type="text" name="lastName" placeholder="Apellidos" />
+              <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+              <input type="email" name="email" placeholder="Correo electrónico" />
+              <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+              <input type="text" name="user" placeholder="Usuario o nickname" />
+              <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+
+            <div class="input-group input-group-icon">
+              <input type="password" name="password" placeholder="Crear contraseña al usuario" />
+              <div class="input-icon"><i class="fa fa-key"></i></div>
+            </div>
+
+            <div class="row">
+              <div class="col-half">
+                <h4>Tipo de documento</h4>
+                <div class="input-group">
+                  <select id="typeDocument" name="typeDocument">
+                    <option value="hide">-- Seleccione --</option>
                     <option value="CC">CC - Cedula de Ciudadania</option>
                     <option value="TI">TI - Tarjeta de Identidad</option>
                     <option value="CE">CE - Cedula de Extranjeria</option>
                     <option value="NIT">NIT</option>
-                </select>
-                <br><br>
-                <label for="address">Numero documento de Identidad</label>
-                <input type="text" name="nroDocument" placeholder="# de documento">
-                <label for="address">Direccion de residencia</label>
-                <input type="text" name="address" placeholder="Direccion">
-                <label for="mobile">Numero de contatcto</label>
-                <input type="text" name="mobile" placeholder="mobil o fijo">
-                <label for="municipality">Municipio de residencia</label>
-                <select id="municipality" name="municipality">
-                    <option value="hide">-- Seleccione municipio --</option>
-                    <option value="MDE">Medellin</option>
-                    <option value="BT">Bogota</option>
-                </select><br><br>
-                <label for="department">Departamento de residencia</label>
-                <select id="department" name="department">
-                    <option value="hide">-- Seleccione departamento --</option>
-                    <option value="ANT">Antioquia</option>
-                    <option value="BT">Bogota</option>
-                </select>
-                <br><br>
-                <label for="neighborhood">Barrio de residencia</label>
-                <select id="neighborhood" name="neighborhood">
-                    <option value="hide">-- Seleccione barrio --</option>
-                    <option value="ALT">Altavista</option>
-                    <option value="BL">Belen</option>
-                    <option value="LT">Los Tanques  </option>
-                </select>
-                <div style="display:inline;">
-                <input type="submit" class="btn-save" value="Guardar">
+                  </select>
                 </div>
-            </form>
-            
-        </div>
-        <%}else {%>
-            <nav class="navbar navbar-dark ">
-                <div class="container-fluid p-0 justify-content-lg-between justify-content-lg-center">
-                    <div
-                        class="d-flex col-12 col-sm-12 col-lg-2 justify-content-sm-center  justify-content-lg-between justify-content-center">
-                        <a class="navbar-brand"><img class="logo-principal-navbar" src="https://calypsobronte.github.io/accion-comunal/images/png/logo.png" alt="" /></a>
-                    </div>
-                    <% if (rol !== 'encuestador') {%>
-                    <div
-                        class="d-flex col-12 col-sm-12  justify-content-lg-end  col-lg-10 justify-content-sm-center m-sm-2 m-lg-0 m-2 justify-content-center">
-                        <a href="/informacion" class="btn btn-secondary"> Informacion</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/noticias" class="btn btn-secondary"> Noticias</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/login" class="btn btn-secondary"> Inicio de sesion</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <%}else {%>
-                        <div
-                        class="d-flex col-12 col-sm-12  justify-content-lg-end  col-lg-10 justify-content-sm-center m-sm-2 m-lg-0 m-2 justify-content-center">
-                        <a href="/encuesta" class="btn btn-secondary"> Crear encuesta</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/prueba" class="btn btn-secondary"> Dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/logout" class="btn btn-secondary"> Cerrar sesion</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <%}%>
+              </div>
+
+              <div class="col-half">
+                <h4>Numero de identidad</h4>
+                <div class="input-group input-group-icon">
+                  <input type="text" name="nroDocument" placeholder="Numero de identificacion" />
+                  <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
-            </nav><br><br>
-            <h4>No tienes permisos para acceder al contenido comunicate con el administrador de la plataforma</h4>
+              </div>
+            </div>
+
+            <div class="input-group input-group-icon">
+              <input type="text" name="mobile" placeholder="Teléfono móvil" />
+              <div class="input-icon"><i class="fa fa-phone"></i></div>
+            </div>
+
+            <div class="input-group input-group-icon">
+              <input type="text" name="address" placeholder="Direccion de residencia" />
+              <div class="input-icon"><i class="fa fa-location-arrow"></i></div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-half">
+              <h4>Fecha de nacimiento</h4>
+              <div class="input-group input-group-icon">
+                <input type="date" name="dateofbirth" placeholder="Fecha de Nacimiento" />
+                <div class="input-icon"><i class="fa fa-calendar"></i></div>
+              </div>
+            </div>
+            <div class="col-half">
+              <h4>Género</h4>
+              <div class="input-group">
+                <input type="radio" name="gender" value="male" id="gender-male" />
+                <label for="gender-male">Hombre</label>
+                <input type="radio" name="gender" value="female" id="gender-female" />
+                <label for="gender-female">Mujer</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-half">
+              <label for="department">Departamento</label>
+              <p>
+                <select name="department" onchange="cambia1()">
+                  <option value="0">Seleccione departamento</option>
+                  <option value="Amazonas">Amazonas</option>
+                  <option value="Antioquia">Antioquia</option>
+                  <option value="Arauca">Arauca</option>
+                  <option value="Atlántico">Atlántico</option>
+                  <option value="Bolívar">Bolívar</option>
+                  <option value="Boyacá">Boyacá </option>
+                  <option value="Caldas">Caldas </option>
+                  <option value="Caquetá">Caquetá</option>
+                  <option value="Casanare">Casanare</option>
+                  <option value="Cauca">Cauca</option>
+                  <option value="Cesar">Cesar</option>
+                  <option value="Chocó">Chocó</option>
+                  <option value="Córdoba">Córdoba</option>
+                  <option value="Cundinamarca">Cundinamarca</option>
+                  <option value="Güainia">Güainia</option>
+                  <option value="Guaviare">Guaviare</option>
+                  <option value="Huila">Huila</option>
+                  <option value="La_Guajira">La Guajira</option>
+                  <option value="Magdalena">Magdalena</option>
+                  <option value="Meta">Meta</option>
+                  <option value="Nariño">Nariño</option>
+                  <option value="Norte_de_Santander">Norte de Santander</option>
+                  <option value="Putumayo">Putumayo</option>
+                  <option value="Quindo">Quindo</option>
+                  <option value="San_Andrés_y_Providencia">San Andrés y Providencia</option>
+                  <option value="Santander">Santander</option>
+                  <option value="Sucre">Sucre</option>
+                  <option value="Tolima">Tolima</option>
+                  <option value="Valle_del_Cauca">Valle del Cauca</option>
+                  <option value="Vaupés">Vaupés</option>
+                  <option value="Vichada">Vichada</option>
+                </select>
+              </p>
+            </div>
+            <div class="col-half">
+              <label for="municipality">Ciudad</label>
+              <p>
+                <select name="municipality" onchange="cambia2()">
+                  <option value="#">Seleccione ciudad</option>
+                </select>
+              </p>
+            </div>
+            <div class="col-half"><br>
+              <label for="neighborhood">Barrio</label>
+              <p>
+                <select name="neighborhood">
+                  <option value="#">Seleccione barrio</option>
+                </select>
+              </p>
+            </div>
+          </div>
+
+          <div class="row"><br><br>
+            <h4>Con que rol quieres asignar al usuario?</h4>
+            <div class="input-group">
+              <input type="radio" name="rol" value="administrador" id="rol-administrador" />
+              <label for="rol-administrador">Administrador</label>
+              <input type="radio" name="rol" value="superadmin" id="rol-superadmin" />
+              <label for="rol-superadmin">Super administrador</label>
+              <input type="radio" name="rol" value="encuestador" id="rol-encuestador" />
+              <label for="rol-encuestador">Encuestador</label>
+              <input type="radio" name="rol" value="secretaria" id="rol-secretaria" />
+              <label for="rol-secretaria">Secretaria/o</label>
+              <input type="radio" name="rol" value="usuario" id="rol-usuario" />
+              <label for="rol-usuario">Usuario</label>
+            </div>
+          </div>
+
+          <div class="row"><br><br>
+            <div class="input-group">
+              <input type="checkbox" id="terms" />
+              <label for="terms" style="font-size: 80%;">Acepto los términos y condiciones</label></br>
+              <div class='button center'>
+                <a href="/" onclick="return confirmarAccesoURL()">
+                  <input class="button -dark center" type="button" value="Cancelar" />
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input class="button -dark center" type="submit" value="Guardar" />
+              </div>
+            </div>
+          </div>
+      </div>
+      </form>
+      </div>
+      <%}else {%>
+        <nav class="navbar navbar-dark ">
+          <div class="container-fluid p-0 justify-content-lg-between justify-content-lg-center">
+            <div
+              class="d-flex col-12 col-sm-12 col-lg-2 justify-content-sm-center  justify-content-lg-between justify-content-center">
+              <a class="navbar-brand"><img class="logo-principal-navbar"
+                  src="https://calypsobronte.github.io/accion-comunal/images/png/logo.png" alt="" /></a>
+            </div>
+            <% if (rol !=='encuestador' || rol !=='superadmin' || rol !=='secretaria' ) {%>
+              <div
+                class="d-flex col-12 col-sm-12  justify-content-lg-end  col-lg-10 justify-content-sm-center m-sm-2 m-lg-0 m-2 justify-content-center">
+                <a href="/informacion" class="btn btn-secondary"> Informacion</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/noticias" class="btn btn-secondary"> Noticias</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/login" class="btn btn-secondary"> Inicio de sesion</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              </div>
+              <%}else {%>
+                <div
+                  class="d-flex col-12 col-sm-12  justify-content-lg-end  col-lg-10 justify-content-sm-center m-sm-2 m-lg-0 m-2 justify-content-center">
+                  <a href="/encuesta" class="btn btn-secondary"> Crear encuesta</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="/prueba" class="btn btn-secondary"> Dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="/logout" class="btn btn-secondary"> Cerrar sesion</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <%}%>
+          </div>
+        </nav><br><br>
+        <h4>No tienes permisos para acceder al contenido comunicate con el administrador de la plataforma</h4>
         <%}%>
-    <%}%>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <% if (typeof alert != "undefined") {%>
-        <script>
-            Swal.fire({
-                title: '<%= alertTitle %>',
-                text: '<%= alertMessage %>',
-                icon: '<%= alertIcon %>',
-                showConfirmButton: '<%= showConfirmButton %>',
-                timer: '<%= timer %>'
-            }).then(()=>{
-                window.location='/<%= ruta %>'
-            })
-        </script>
-    <%}%>
+          <%}%>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            <% if (typeof alert !="undefined" ) {%>
+              <script>
+                Swal.fire({
+                  title: '<%= alertTitle %>',
+                  text: '<%= alertMessage %>',
+                  icon: '<%= alertIcon %>',
+                  showConfirmButton: '<%= showConfirmButton %>',
+                  timer: '<%= timer %>'
+                }).then(() => {
+                  window.location = '/<%= ruta %>'
+                })
+              </script>
+              <%}%>
 </body>
+<script src="/resources/js/selection.js"></script>
+
 </html>

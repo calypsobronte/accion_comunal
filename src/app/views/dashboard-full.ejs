@@ -77,6 +77,12 @@
                                 <a class="nav-link" id="crear-tab" data-toggle="tab" href="#crear"
                                     role="tab">Crear encuesta</a>
                             </li>
+                            <% if (rol==='administrador' || rol==='superadmin') { %>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="crear_user-tab" data-toggle="tab" href="#crear_user"
+                                        role="tab">Crear Usuarios</a>
+                                </li>
+                            <% } %>
                         </ul>
 
                         
@@ -182,6 +188,18 @@
                                 <div class="container-fluid mb-2">
                                     <div class="row">
                                         <iframe src="/encuesta" width="900" height="700" allow="fullscreen"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Crear Usuarios -->
+                            <div class="tab-pane" id="crear_user" role="tabpanel"
+                                aria-labelledby="crear_user-tab">
+    
+                                <!-- CARTAS DE PROYECTOS -->
+                                <div class="container-fluid mb-2">
+                                    <div class="row">
+                                        <iframe src="/register" width="900" height="700" allow="fullscreen"></iframe>
                                     </div>
                                 </div>
                             </div>
