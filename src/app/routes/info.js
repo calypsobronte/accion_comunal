@@ -39,6 +39,9 @@ module.exports = app => {
     app.get('/test', (req, res) => {
         res.render('../views/test-encuesta.ejs');
     })
+    app.get('/eps', (req, res) => {
+        res.render('../views/ejs.ejs');
+    })
 
     app.get('/list', (req, res) => {
         connection.query("SELECT * FROM usuarios", (errr, results) => {
@@ -106,15 +109,36 @@ module.exports = app => {
         }
     })
 
+    app.get('/register-nav', (req, res) => {
+        if (req.session.loggedin) {
+            connection.query("SELECT * FROM usuarios", (err, result) => {
+                if (err) {
+                    res.send(err);
+                } else {
+                    console.log(req.session.encuestador === 1);
+                    res.render("../views/register-nav.ejs", {
+                        usuarios: result,
+                        login: true,
+                        name: req.session.name,
+                        rol: req.session.rol,
+                        encuestador: req.session.encuestador
+                    });
+                }
+            })
+        } else {
+            res.render('../views/login.ejs');
+        }
+    })
+
     //Solicitudes post formulario de registro
     app.post('/encuesta', async (req, res) => {
         if (req.session.loggedin) {
-            let { name,lastName,email,typeDocument,tienesSisben,serviciosHogar,nivelEscolar,phone,nroHijos,grupoDelSisben,tieneHijos,estrato, eps, nroDocument, address, mobile, municipality, department, neighborhood, dateofbirth, gender } = req.body;
-            console.log(req.body);
-            if (tienesSisben === 'hide') {
+            let { name,lastName,email,typeDocument,tienesSisben,serviciosHogar,nivelEscolar,phone,nroHijos,grupoDelSisben,tieneHijos,estrato, eps, nroDocument, address, mobile, municipality, department, neighborhood, dateofbirth, gender, nroPersonas, conQuienVive, ocupacion, cabezafamilia, tienediscapacidad, etnia  } = req.body;
+            /* console.log(req.body);
+            if (tienesSisben === '' || tienesSisben === '0') {
                 tienesSisben = 'No'
             }
-            if (municipality === 'hide' || department === 'hide' || neighborhood === 'hide', serviciosHogar === 'hide') {
+            if (municipality === '' || department === 'hide' || neighborhood === 'hide', serviciosHogar === 'hide') {
                 municipality, department, neighborhood,serviciosHogar = 'No se selecciono'
             }
             if (grupoDelSisben === '') {
@@ -131,7 +155,7 @@ module.exports = app => {
             }
             if (nivelEscolar === '' || nivelEscolar === null) {
                 nivelEscolar = 'No constesto o no se realizo registro'
-            }
+            } */
             connection.query("INSERT INTO encuesta SET?", {
                 encuestadorId: req.session.encuestador,
                 name: name,
@@ -157,18 +181,24 @@ module.exports = app => {
                 date_create: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
                 nivelEscolar:nivelEscolar,
                 state: true,
+                nroPersonas: nroPersonas,
+                conQuienVive: conQuienVive,
+                ocupacion: ocupacion,
+                cabezafamilia: cabezafamilia,
+                tienediscapacidad: tienediscapacidad,
+                etnia: etnia,
                 date_update: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
             }, async (error, results) => {
                 if (error) {
                     console.log(error);
                 } else {
                     console.log(results);
-                    connection.query("SELECT * FROM encuesta", (err, result) => {
+                    connection.query("SELECT * FROM encuesta", (err, results) => {
                         if (err) {
                             res.send(err);
                         } else {
-                            console.log(result);
-                            res.redirect("/encuesta");
+                            console.log(results);
+                            res.redirect("/dashboard");
                         }
                     })
                 }
@@ -179,7 +209,7 @@ module.exports = app => {
 
     })
 
-    app.get('/prueba', (req, res) => {
+    app.get('/dashboard', (req, res) => {
         if (req.session.loggedin) {
             connection.query("SELECT * FROM encuesta", (err, result) => {
                 if (err) {
@@ -198,7 +228,7 @@ module.exports = app => {
         }
     })
 
-    app.get('/dashboard', (req, res) => {
+    app.get('/main-dashboard', (req, res) => {
         if (req.session.loggedin) {
             connection.query("SELECT * FROM usuarios", (err, result) => {
                 if (err) {
