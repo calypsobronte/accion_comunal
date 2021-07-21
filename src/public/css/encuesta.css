@@ -49,6 +49,15 @@
     column-count: 3;
     column-gap: 0px;
   }
+
+  #element-input {
+    -moz-column-count: 3;
+    -moz-column-gap: 0px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 0px;
+    column-count: 3;
+    column-gap: 0px;
+  }
   
   #correo,
   #nombres2,
@@ -85,7 +94,7 @@
     padding: 6px;
     -webkit-flex: 1;
             flex: 1;
-    height: 300px;
+    height: 450px;
   }
   
   #caja2 {
@@ -93,7 +102,7 @@
     padding: 6px;
     -webkit-flex: 1;
             flex: 1;
-    height: 300px;
+    height: 450px;
   }
   
   #caja3 {
@@ -101,5 +110,76 @@
     padding: 6px;
     -webkit-flex: 1;
             flex: 1;
-    height: 300px;
+    height: 450px;
   }
+
+
+/*caja de radio */
+
+input[type="radio"] + label {
+  width: 100%;
+  padding: -9.99em;
+  line-height: 2;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  -webkit-transition: 0.35s ease-in-out;
+  -moz-transition: 0.35s ease-in-out;
+  -o-transition: 0.35s ease-in-out;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+select {
+  width: 100% !important;
+  padding: 5px !important;
+  line-height: 1 !important;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px !important;
+  -webkit-transition: 0.35s ease-in-out;
+  -moz-transition: 0.35s ease-in-out;
+  -o-transition: 0.35s ease-in-out;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+select{
+  display: inline-block;
+  width: 100% !important;
+  text-align: center;
+  float: center !important;
+  border-radius: 0 !important;
+  
+}
+
+input[type="radio"] + label {
+  display: inline-block;
+  width: 40%;
+  text-align: center;
+  float: center;
+  border-radius: 0;
+}
+input[type="radio"] + label:first-of-type {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+input[type="radio"] + label:last-of-type {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+input[type="radio"] + label i {
+  padding-right: 0.4em;
+}
+input[type="radio"]:checked + label,
+input:checked + label:before,
+select:focus,
+select:active {
+  background-color: #545454;
+  color: #fff;
+  border-color: #545454;
+}

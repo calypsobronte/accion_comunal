@@ -266,11 +266,20 @@ a {
   transition: all 0.3s ease-in-out;
   outline: 0;
 }
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
 a:focus,
 a:hover {
   color: #0073e5;
   text-decoration: none;
   outline: 0;
+  background-color: transparent;
 }
 .btn_1,
 a.btn_1 {
