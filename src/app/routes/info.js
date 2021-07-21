@@ -180,7 +180,7 @@ module.exports = app => {
                 dateofbirth: moment(dateofbirth).format("YYYY-MM-DD HH:mm:ss"),
                 date_create: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
                 nivelEscolar:nivelEscolar,
-                state: true,
+                state: 1,
                 nroPersonas: nroPersonas,
                 conQuienVive: conQuienVive,
                 ocupacion: ocupacion,
@@ -361,7 +361,7 @@ module.exports = app => {
             neighborhood: neighborhood,
             dateofbirth: moment(dateofbirth).format("YYYY-MM-DD"),
             date_create: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-            state: true,
+            state: 1,
             date_update: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
             gender: gender,
         }, async (error, results) => {

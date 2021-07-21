@@ -3,7 +3,7 @@ use accion_comunal;
 
 CREATE TABLE usuarios(
 	id INT PRIMARY KEY auto_increment NOT NULL,
-	avatar VARCHAR(70) NOT NULL,
+	avatar VARCHAR(250) NOT NULL,
 	name VARCHAR(70) NOT NULL,
 	lastName VARCHAR(70) NOT NULL,
 	email VARCHAR(70) UNIQUE DEFAULT NULL,
@@ -13,18 +13,22 @@ CREATE TABLE usuarios(
 	typeDocument VARCHAR(70) NOT NULL,
 	nroDocument INT(70) NOT NULL,
 	gender VARCHAR(70) NOT NULL,
-	address VARCHAR(70) NOT NULL,
+	address VARCHAR(150) NOT NULL,
 	mobile VARCHAR(70) NOT NULL,
 	municipality VARCHAR(70) NOT NULL,
 	department VARCHAR(70) NOT NULL,
 	neighborhood VARCHAR(70) NOT NULL,
-	dateofbirth date NOT NULL,
-    date_create date NOT NULL, -- fecha de creacion del registro
-    state VARCHAR(150) NOT NULL, -- si el usuario esta habilitado para mostrarse en la visual del admin
-    date_update date NOT NULL -- fecha de actualizacion del registro
+	dateofbirth DATE NOT NULL,
+    date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- fecha de creacion del registro
+    state BOOLEAN NOT NULL, -- si el usuario esta habilitado para mostrarse en la visual del admin
+    date_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- fecha de actualizacion del registro
 );
 
 DESCRIBE usuarios;
+
+INSERT INTO usuarios (avatar,name,lastName,email,user,password,rol,typeDocument,nroDocument,gender,address,mobile,municipality,department,neighborhood,dateofbirth,state)
+VALUES ('n/a', 'Super Admin', 'Admin','superadmin@localhost','superadmin','$2a$08$deXgJnXd/rEAr7cAM.fpQ.w/IDwUj.sfg0yIbkbO/BdhQ6HoK9Lda','superadmin','n/a',0123,'n/a','n/a','n/a','n/a','n/a','n/a','2020-02-12', 1);
+
 
 ALTER TABLE usuarios
   ADD gender VARCHAR(70) NOT NULL;
@@ -46,22 +50,22 @@ CREATE TABLE encuesta(
 	tieneHijos VARCHAR(70) NOT NULL,
 	nroHijos VARCHAR(70) NOT NULL,
 	conQuienVive VARCHAR(70) NOT NULL,
-	address VARCHAR(70) NOT NULL,
+	address VARCHAR(150) NOT NULL,
 	mobile VARCHAR(70) NOT NULL,
 	phone VARCHAR(70) NOT NULL,
 	municipality VARCHAR(70) NOT NULL,
 	department VARCHAR(70) NOT NULL,
 	neighborhood VARCHAR(70) NOT NULL,
-	dateofbirth date NOT NULL,
 	serviciosHogar VARCHAR(70) NOT NULL,
 	nivelEscolar VARCHAR(70) NOT NULL,
 	cabezafamilia VARCHAR(70) NOT NULL,
 	ocupacion VARCHAR(70) NOT NULL,
 	tienediscapacidad VARCHAR(70) NOT NULL,
 	etnia VARCHAR(70) NOT NULL,
-    date_create date NOT NULL, -- fecha de creacion del registro
-    state VARCHAR(150) NOT NULL, -- si el usuario esta habilitado para mostrarse en la visual del admin
-    date_update date NOT NULL -- fecha de actualizacion del registro
+    dateofbirth DATE NOT NULL,
+    date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- fecha de creacion del registro
+    state BOOLEAN NOT NULL, -- si el usuario esta habilitado para mostrarse en la visual del admin
+    date_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- fecha de actualizacion del registro
 );
 
 DESCRIBE encuesta;
@@ -95,9 +99,38 @@ CREATE TABLE contacto(
 	email VARCHAR(70) NOT NULL,
 	asunto VARCHAR(70) NOT NULL,
 	mensaje VARCHAR(300) NOT NULL,
-    date_create date NOT NULL, -- fecha de creacion del registro
-    date_update date NOT NULL -- fecha de actualizacion del registro
+    date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- fecha de creacion del registro
+    date_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- fecha de actualizacion del registro
 );
 
 DESCRIBE contacto;
 
+/*
+CLEARDB_DATABASE_URL: mysql://b239a3e4c2f07c:f883eb9c@us-cdbr-east-04.cleardb.com/heroku_c30678e9610f973?reconnect=true
+
+host: us-cdbr-east-04.cleardb.com
+user: b239a3e4c2f07c
+pass: f883eb9c
+database: heroku_c30678e9610f973
+
+mysql --host=us-cdbr-east-04.cleardb.com --user=b239a3e4c2f07c --password=f883eb9c --reconnect heroku_c30678e9610f973
+
+DB_HOST='us-cdbr-east-04.cleardb.com'
+DB_USER='b239a3e4c2f07c'
+DB_PASSWORD='f883eb9c'
+DB_DATABASE='heroku_c30678e9610f973'
+
+DB_HOST = localhost
+DB_USER = root
+DB_PASSWORD = password
+DB_DATABASE = accion_comunal
+DB_HOST_LOCAL = localhost
+DB_USER_LOCAL = root
+DB_PASSWORD_LOCAL = password
+DB_DATABASE_LOCAL = accion_comunal
+DB_HOST_HEROKU = 'us-cdbr-east-04.cleardb.com'
+DB_USER_HEROKU = 'b239a3e4c2f07c'
+DB_PASSWORD_HEROKU = 'f883eb9c'
+DB_DATABASE_HEROKU = 'heroku_c30678e9610f973'
+
+*/
