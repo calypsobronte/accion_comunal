@@ -42,8 +42,10 @@ CREATE TABLE encuesta(
 	gender VARCHAR(70) NOT NULL,
 	tienesSisben VARCHAR(70) NOT NULL,
 	grupoDelSisben VARCHAR(70) NOT NULL,
+	nroPersonas VARCHAR(70) NOT NULL,
 	tieneHijos VARCHAR(70) NOT NULL,
 	nroHijos VARCHAR(70) NOT NULL,
+	conQuienVive VARCHAR(70) NOT NULL,
 	address VARCHAR(70) NOT NULL,
 	mobile VARCHAR(70) NOT NULL,
 	phone VARCHAR(70) NOT NULL,
@@ -53,6 +55,10 @@ CREATE TABLE encuesta(
 	dateofbirth date NOT NULL,
 	serviciosHogar VARCHAR(70) NOT NULL,
 	nivelEscolar VARCHAR(70) NOT NULL,
+	cabezafamilia VARCHAR(70) NOT NULL,
+	ocupacion VARCHAR(70) NOT NULL,
+	tienediscapacidad VARCHAR(70) NOT NULL,
+	etnia VARCHAR(70) NOT NULL,
     date_create date NOT NULL, -- fecha de creacion del registro
     state VARCHAR(150) NOT NULL, -- si el usuario esta habilitado para mostrarse en la visual del admin
     date_update date NOT NULL -- fecha de actualizacion del registro
@@ -61,8 +67,27 @@ CREATE TABLE encuesta(
 DESCRIBE encuesta;
 
 ALTER TABLE encuesta ADD CONSTRAINT `encuesta_ibfk_1` FOREIGN KEY (`encuestadorId`) REFERENCES usuarios (`id`);
+
 ALTER TABLE encuesta
   ADD gender VARCHAR(70) NOT NULL;
+
+ALTER TABLE encuesta
+  ADD nroPersonas VARCHAR(70) NOT NULL;
+
+ALTER TABLE encuesta
+  ADD conQuienVive VARCHAR(70) NOT NULL;
+
+ALTER TABLE encuesta
+  ADD ocupacion VARCHAR(70) NOT NULL;
+
+ALTER TABLE encuesta
+  ADD cabezafamilia VARCHAR(70) NOT NULL;
+
+ALTER TABLE encuesta
+  ADD tienediscapacidad VARCHAR(70) NOT NULL;
+
+ALTER TABLE encuesta
+  ADD etnia VARCHAR(70) NOT NULL;
 
 CREATE TABLE contacto(
 	id INT PRIMARY KEY auto_increment NOT NULL,
