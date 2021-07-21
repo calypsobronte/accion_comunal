@@ -9,13 +9,26 @@
     href="https://raw.githubusercontent.com/calypsobronte/accion-comunal/master/images/png/logo-ico.png?token=AEPC7ZEPGKSRJSZUFUM3OWLA7SQUY" />
   <link rel="stylesheet" href="/resources/css/registro.css" />
   <link rel="stylesheet" href="/resources/css/botones.css" />
+  <link rel="stylesheet" href="/resources/css/nav.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   <title>Crear usuarios</title>
 </head>
 
 <body>
-
+  <nav class="navbar navbar-dark bg-dark">
+    <% if (login) {%>
+        <a href="dashboard" class="navbar-brand mx-auto">Bienvenido/a <%= name %> a la Plataforma JAL Los
+                Tanques</a>
+        <% if (rol==='administrador'  ||  rol==='encuestador') {%>
+            <h4 class="text-white">
+                <%= rol %> &nbsp;&nbsp;&nbsp;&nbsp;
+            </h4>
+        <%}%>
+        <a href="/main-dashboard" class="btn btn-secondary"> Volver</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <%}%>
+</nav>
+<br>
   <% if (login) {%>
     <% if (rol==='administrador' || rol==='superadmin' ) {%>
       <div class="container">
