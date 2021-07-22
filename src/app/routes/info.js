@@ -18,47 +18,6 @@ module.exports = app => {
         }
     })
 
-    app.get('/pruebaregistro', (req, res) => {
-        if (req.session.loggedin) {
-            res.render("../views/prueba-registro.ejs", {
-                login: true,
-                name: req.session.name,
-                rol: req.session.rol
-            });
-        } else {
-            res.render('../views/login.ejs');
-        }
-    })
-
-    app.get('/pruebaencuesta', (req, res) => {
-        res.render('../views/prueba-encuesta.ejs');
-    })
-    app.get('/testencuesta', (req, res) => {
-        res.render('../views/prueba-encuesta-full.ejs');
-    })
-    app.get('/test', (req, res) => {
-        res.render('../views/test-encuesta.ejs');
-    })
-    app.get('/eps', (req, res) => {
-        res.render('../views/ejs.ejs');
-    })
-
-    app.get('/list', (req, res) => {
-        connection.query("SELECT * FROM usuarios", (errr, results) => {
-            connection.query("SELECT * FROM encuesta", (err, result) => {
-                if (err, errr) {
-                    res.send(err);
-                } else {
-                    res.render("../views/prueba.ejs", {
-                        usuarios: results,
-                        encuesta: result,
-                    });
-                }
-            })
-        });
-        
-    })
-
     app.get('/informacion', (req, res) => {
         res.render('../views/informacion.ejs');
     })
@@ -211,18 +170,21 @@ module.exports = app => {
 
     app.get('/dashboard', (req, res) => {
         if (req.session.loggedin) {
-            connection.query("SELECT * FROM encuesta", (err, result) => {
-                if (err) {
-                    res.send(err);
-                } else {
-                    res.render("../views/dashboard-full.ejs", {
-                        encuesta: result,
-                        login: true,
-                        name: req.session.name,
-                        rol: req.session.rol
-                    });
-                }
-            })
+            connection.query("SELECT * FROM usuarios", (errr, results) => {
+                connection.query("SELECT * FROM encuesta", (err, result) => {
+                    if (err, errr) {
+                        res.send(err);
+                    } else {
+                        res.render("../views/dashboard-full.ejs", {
+                            usuarios: results,
+                            encuesta: result,
+                            login: true,
+                            name: req.session.name,
+                            rol: req.session.rol
+                        });
+                    }
+                })
+            });
         } else {
             res.render('../views/login.ejs');
         }
@@ -235,26 +197,6 @@ module.exports = app => {
                     res.send(err);
                 } else {
                     res.render("../views/dashboard.ejs", {
-                        usuarios: result,
-                        login: true,
-                        name: req.session.name,
-                        rol: req.session.rol
-                    });
-                }
-            })
-        } else {
-            res.render('../views/login.ejs');
-        }
-
-    })
-
-    app.get('/restrictedNo', (req, res) => {
-        if (req.session.loggedin) {
-            connection.query("SELECT * FROM usuarios", (err, result) => {
-                if (err) {
-                    res.send(err);
-                } else {
-                    res.render("../views/list.ejs", {
                         usuarios: result,
                         login: true,
                         name: req.session.name,
