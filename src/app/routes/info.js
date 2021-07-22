@@ -22,6 +22,9 @@ module.exports = app => {
         res.render('../views/informacion.ejs');
     })
 
+    /* app.get('*', (req, res) => {
+        res.status(400).render('../views/error.ejs', { title: 'No encontrado'})
+    }) */
     app.get('/noticias', (req, res) => {
         res.render('../views/noticias.ejs');
     })
@@ -170,20 +173,23 @@ module.exports = app => {
 
     app.get('/dashboard', (req, res) => {
         if (req.session.loggedin) {
-            connection.query("SELECT * FROM usuarios", (errr, results) => {
-                connection.query("SELECT * FROM encuesta", (err, result) => {
-                    if (err, errr) {
-                        res.send(err);
-                    } else {
-                        res.render("../views/dashboard-full.ejs", {
-                            usuarios: results,
-                            encuesta: result,
-                            login: true,
-                            name: req.session.name,
-                            rol: req.session.rol
-                        });
-                    }
+            connection.query("SELECT * FROM usuarios", (err, usuarios) => {
+                connection.query("SELECT * FROM encuesta", (error, encuesta) => {
+                    connection.query("SELECT * FROM contacto", (errors, mensaje) => {
+                        if (err, error, errors) {
+                            res.send(err, error, errors);
+                        } else {
+                            res.render("../views/dashboard-full.ejs", {
+                                usuarios: usuarios,
+                                encuesta: encuesta,
+                                mensaje: mensaje,
+                                login: true,
+                                name: req.session.name,
+                                rol: req.session.rol
+                            });
+                        }
                 })
+            })
             });
         } else {
             res.render('../views/login.ejs');
@@ -386,6 +392,10 @@ module.exports = app => {
                 }
             })
         }
+    })
+
+    app.get('*', (req, res) => {
+        res.status(400).render('../views/error.ejs', { title: 'No encontrado'})
     })
 
 }
