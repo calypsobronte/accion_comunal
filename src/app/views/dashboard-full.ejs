@@ -268,6 +268,9 @@
                                             <% } %>
                                         </table>
                                     </div>
+                                </div>
+                                <br>
+                                <div class="row">
                                     <div class="col-md-6 mt-4 text-center">
                                         <h3 class="card-title">Listado de encuestas</h3>
                                         <table class="table table-striped">
@@ -288,7 +291,32 @@
                                         </table>
                                     </div>
                                 </div>
-
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6 mt-4 text-center">
+                                        <h3 class="card-title">Listado de Contactanos</h3>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nombre Completo</th>
+                                                <th>Correo electronico</th>
+                                                <th>Asunto</th>
+                                                <th>Mensaje</th>
+                                                <th>Fecha de creacion</th>
+                                            </tr>
+                                            <% for (let i = 0; i < mensaje.length; i++) { %>
+                                                <tr>
+                                                        <th><%= mensaje[i].id %></th>
+                                                        <th><%= mensaje[i].nameComplete %></th>
+                                                        <th><%= mensaje[i].email %></th>
+                                                        <th><%= mensaje[i].asunto %></th>
+                                                        <th><p><%= mensaje[i].mensaje %></p></th>
+                                                        <th><%= mensaje[i].date_create %></th>
+                                                </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                </div>
 
                             </div>
 
