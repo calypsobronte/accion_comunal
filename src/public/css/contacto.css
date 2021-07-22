@@ -34,8 +34,8 @@ form textarea:focus {
   box-shadow: 0 0px 2px #696969 !important;
 }
 form #input-submit {
-  color: white;
-  background: #696969;
+  color: #696969;
+  background: white;
   cursor: pointer;
 }
 form #input-submit:hover {
@@ -44,7 +44,7 @@ form #input-submit:hover {
   box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
 }
 form textarea {
-  height: 126px;
+  height: 170px;
 }
 
 .half {
