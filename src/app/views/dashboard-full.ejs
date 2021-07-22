@@ -59,30 +59,36 @@
                 <div class="card shadow">
                     <div class="card-body">
 
-
-                        <ul class="nav nav-tabs mb-5 ">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="proyectos-tab" data-toggle="tab" href="#proyectos"
-                                    role="tab">Encuestas</a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" id="procesos-tab" data-toggle="tab" href="#procesos"
-                                    role="tab">Metricas</a>
-                            </li> -->
+                        <ul class="nav nav-tabs mb-5 ">                           
                             <li class="nav-item">
                                 <a class="nav-link" id="metricas-tab" data-toggle="tab" href="#metricas"
                                     role="tab">Metricas</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="crear-tab" data-toggle="tab" href="#crear"
-                                    role="tab">Crear encuesta</a>
-                            </li>
-                            <% if (rol==='administrador' || rol==='superadmin') { %>
+                            <% if (rol==='administrador' || rol==='superadmin' || rol === 'secretaria') { %>
                                 <li class="nav-item">
                                     <a class="nav-link" id="crear_user-tab" data-toggle="tab" href="#crear_user"
                                         role="tab">Crear Usuarios</a>
                                 </li>
-                            <% } %>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="proyectos-tab" data-toggle="tab" href="#proyectos"
+                                        role="tab">Exportar encuestas</a>
+                                </li>
+                            <% } if(rol === 'administrador' || rol === 'encuestador' || rol === 'secretaria' || rol==='superadmin') { %>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="encuestas-tab" data-toggle="tab" href="#encuestas"
+                                        role="tab">Lista de encuesta</a>
+                                </li>
+                            <%} if(rol === 'administrador' || rol === 'encuestador' || rol==='superadmin') {%>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="crear-tab" data-toggle="tab" href="#crear"
+                                        role="tab">Crear encuesta</a>
+                                </li>
+                            <%} if(rol === 'administrador' || rol==='superadmin') {%>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="registros-tab" data-toggle="tab" href="#registros"
+                                        role="tab">Registros</a>
+                                </li>
+                            <%} %>  
                         </ul>
 
                         
@@ -203,6 +209,89 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Lista de encuetsa -->
+                            <div class="tab-pane fade show" id="encuestas" role="tabpanel"
+                                aria-labelledby="encuestas-tab">
+                                <h1>Lista de encuestas</h1>
+                                <div class="row">
+                                    <div class="col-md-6 mt-4 text-center">
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nombre Completo</th>
+                                                <th>Correo electronico</th>
+                                                <th>Usuario o nickname</th>
+                                                <th>Fecha de creacion</th>
+                                            </tr>
+                                            <% for (let i = 0; i < encuesta.length; i++) { %>
+                                                <tr>
+                                                        <th><%= encuesta[i].id %></th>
+                                                        <th><%= encuesta[i].nameComplete %></th>
+                                                        <th><%= encuesta[i].email %></th>
+                                                        <th><%= encuesta[i].user %></th>
+                                                        <th><%= encuesta[i].date_create %></th>
+                                                </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!-- Lista de registros tanto usuarios como de encuestas -->
+                            <div class="tab-pane fade show" id="registros" role="tabpanel"
+                                aria-labelledby="registros-tab">
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6 mt-4 text-center">
+                                        <h3 class="card-title">Listado de usuarios</h3>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nombre Completo</th>
+                                                <th>Correo electronico</th>
+                                                <th>Usuario o nickname</th>
+                                                <th>Fecha de creacion</th>
+                                            </tr>
+                                            <% for (let i = 0; i < usuarios.length; i++) { %>
+                                                <tr>
+                                                    <% if (usuarios[i].restricted !== "1") { %>
+                                                        <th><%= usuarios[i].id %></th>
+                                                        <th><%= usuarios[i].name %> <%= usuarios[i].lastName %></th>
+                                                        <th><%= usuarios[i].email %></th>
+                                                        <th><%= usuarios[i].user %></th>
+                                                        <th><%= usuarios[i].date_create %></th>
+                                                    <% } %>
+                                                </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6 mt-4 text-center">
+                                        <h3 class="card-title">Listado de encuestas</h3>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nombre Completo</th>
+                                                <th>Correo electronico</th>
+                                                <th>Fecha de creacion</th>
+                                            </tr>
+                                            <% for (let i = 0; i < encuesta.length; i++) { %>
+                                                <tr>
+                                                        <th><%= encuesta[i].id %></th>
+                                                        <th><%= usuarios[i].name %> <%= usuarios[i].lastName %></th>
+                                                        <th><%= encuesta[i].email %></th>
+                                                        <th><%= encuesta[i].date_create %></th>
+                                                </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
 
                         </div>
 
