@@ -106,31 +106,6 @@ CREATE TABLE contacto(
 DESCRIBE contacto;
 
 /*
-CLEARDB_DATABASE_URL: mysql://b239a3e4c2f07c:f883eb9c@us-cdbr-east-04.cleardb.com/heroku_c30678e9610f973?reconnect=true
 
-host: us-cdbr-east-04.cleardb.com
-user: b239a3e4c2f07c
-pass: f883eb9c
-database: heroku_c30678e9610f973
-
-mysql --host=us-cdbr-east-04.cleardb.com --user=b239a3e4c2f07c --password=f883eb9c --reconnect heroku_c30678e9610f973
-
-DB_HOST='us-cdbr-east-04.cleardb.com'
-DB_USER='b239a3e4c2f07c'
-DB_PASSWORD='f883eb9c'
-DB_DATABASE='heroku_c30678e9610f973'
-
-DB_HOST = localhost
-DB_USER = root
-DB_PASSWORD = password
-DB_DATABASE = accion_comunal
-DB_HOST_LOCAL = localhost
-DB_USER_LOCAL = root
-DB_PASSWORD_LOCAL = password
-DB_DATABASE_LOCAL = accion_comunal
-DB_HOST_HEROKU = 'us-cdbr-east-04.cleardb.com'
-DB_USER_HEROKU = 'b239a3e4c2f07c'
-DB_PASSWORD_HEROKU = 'f883eb9c'
-DB_DATABASE_HEROKU = 'heroku_c30678e9610f973'
 
 */
