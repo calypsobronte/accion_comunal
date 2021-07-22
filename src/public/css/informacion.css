@@ -19,7 +19,7 @@
 }
 
 body {
-  background-image: linear-gradient(to right, #034378, #2d4e68);
+  background-image: linear-gradient(to right, #d6d6d6, #c9c9c9);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
