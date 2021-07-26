@@ -351,7 +351,6 @@ module.exports = app => {
         const { user, password } = req.body;
         if (user && password) {
             connection.query("SELECT * FROM usuarios WHERE user = ?", [user], async (error, result) => {
-                console.log(result[0].password)
                 if (result.length === 0 || !(await bcryptjs.compare(password, result[0].password)) || result[0].rol === 'user') {
                     res.render('../views/login.ejs', {
                         alert: true,
