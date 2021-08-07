@@ -40,7 +40,7 @@ CREATE TABLE encuesta(
 	lastName VARCHAR(70) NOT NULL,
 	typeDocument VARCHAR(70) NOT NULL,
 	nroDocument INT(70) NOT NULL,
-	email VARCHAR(70) UNIQUE DEFAULT NULL,
+	email VARCHAR(70) UNIQUE DEFAULT NULL, -- modificar 
 	estrato VARCHAR(70) NOT NULL,
 	eps VARCHAR(70) NOT NULL,
 	gender VARCHAR(70) NOT NULL,

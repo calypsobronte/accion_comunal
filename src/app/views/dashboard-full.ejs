@@ -64,7 +64,7 @@
                                 <a class="nav-link" id="metricas-tab" data-toggle="tab" href="#metricas"
                                     role="tab">Metricas</a>
                             </li>
-                            <% if (rol==='administrador' || rol==='superadmin' || rol === 'secretaria') { %>
+                            <% if (rol==='administrador' || rol==='superadmin') { %>
                                 <li class="nav-item">
                                     <a class="nav-link" id="crear_user-tab" data-toggle="tab" href="#crear_user"
                                         role="tab">Crear Usuarios</a>
@@ -135,7 +135,7 @@
                                                 <div class="modal-dialog">
                                                   <div class="modal-content">
                                                     <div class="modal-header">
-                                                      <h5 class="modal-title" id="exampleModalLabel">Editar Datos</h5>
+                                                      <h5 class="modal-title" id="exampleModalLabel">Mas informacion</h5>
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -144,11 +144,6 @@
                                                           <label for="dni" class="col-form-label"><b>Documento de identidad: </b> <%= encuesta[i].typeDocument%> <%= encuesta[i].nroDocument%> </label><br>
                                                           <label for="estrato" class="col-form-label"><b>Estrato: </b> <%= encuesta[i].estrato%> </label><br>
                                                           <label for="sisben" class="col-form-label"><b>Sisben: </b> <%= encuesta[i].tienesSisben%> <%= (encuesta[i].grupoDelSisben === '' )?encuesta[i].grupoDelSisben:"" %></label><br>
-                                                          <label for="dni" class="col-form-label"><b>Documento de identidad: </b> <%= encuesta[i].typeDocument%> <%= encuesta[i].nroDocument%></label><br>
-                                                          <label for="dni" class="col-form-label"><b>Documento de identidad: </b> <%= encuesta[i].typeDocument%> <%= encuesta[i].nroDocument%></label>
-                                                          <label for="dni" class="col-form-label"><b>Documento de identidad: </b> <%= encuesta[i].typeDocument%> <%= encuesta[i].nroDocument%></label>
-                                                          <label for="dni" class="col-form-label"><b>Documento de identidad: </b> <%= encuesta[i].typeDocument%> <%= encuesta[i].nroDocument%></label>
-                                                          <label for="dni" class="col-form-label"><b>Documento de identidad: </b> <%= encuesta[i].typeDocument%> <%= encuesta[i].nroDocument%></label>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -179,6 +174,37 @@
                                                     <h5 class="card-title"><%= encuesta.length %></h5>
                                                     <p class="card-text">Total de encuestas</p>
                                                 </div>
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="col-3 p-3">
+                                            <div class="card text-center shadow" style="height:400px; width: 500px;"><br>
+                                                <h5 class="card-title">Datos de encuentados</h5>
+                                                    <canvas id="myChart" width="400" height="200"></canvas>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="container-fluid mb-2">
+                                    <div class="row">
+                                        <!--Div that will hold the dashboard-->
+                                        <!-- Primera carta -->
+                                        <!-- Primera carta -->
+                                        <div class="col-3 p-3">
+                                            <div class="card text-center shadow" style="height:170px;"><br>
+                                                
+                                                <div class="card-body">
+                                                   
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-3 p-3">
+                                            <div class="card text-center shadow" style="height:400px; width: 500px;"><br>
                                                 
                                             </div>
                                         </div>
@@ -283,7 +309,7 @@
                                             <% for (let i = 0; i < encuesta.length; i++) { %>
                                                 <tr>
                                                         <th><%= encuesta[i].id %></th>
-                                                        <th><%= usuarios[i].name %> <%= usuarios[i].lastName %></th>
+                                                        <th><%= encuesta[i].name %> <%= encuesta[i].lastName %></th>
                                                         <th><%= encuesta[i].email %></th>
                                                         <th><%= encuesta[i].date_create %></th>
                                                 </tr>
@@ -370,7 +396,58 @@
             }).trigger('change');
         });        
     </script>
-
+    <script>
+        window.addEventListener('load', setup);
+  
+        async function setup() {
+          const ctx = document.getElementById('myChart').getContext('2d');
+          const globalData = await getData();
+          const myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: globalData.label,
+              datasets: [
+                {
+                  label: 'Datos',
+                  data: globalData.dataset,
+                  fill: false,
+                  backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)'
+                      ],
+                      borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1
+                }
+              ]
+            },
+            options: {}
+          });
+        }
+  
+        async function getData() {
+          const response = await fetch('http://localhost:3000/chart');
+          const data = await response.json();
+          const label = [];
+          const dataset = [];
+          
+          data.forEach(row => {
+            label.push(row.municipality);
+            dataset.push(parseFloat(row.nroHijos));
+          });
+          return { label, dataset };
+        }
+      </script>
     
 </body>
 

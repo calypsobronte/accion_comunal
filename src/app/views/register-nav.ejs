@@ -29,7 +29,7 @@
 </nav>
 <br>
   <% if (login) {%>
-    <% if (rol==='administrador' || rol==='superadmin' ) {%>
+    <% if (rol==='administrador' || rol==='superadmin') {%>
       <div class="container">
         <form action="register" method="POST" id="selection">
           <div class="row">
@@ -198,30 +198,6 @@
       </form>
       </div>
       <%}else {%>
-        <nav class="navbar navbar-dark ">
-          <div class="container-fluid p-0 justify-content-lg-between justify-content-lg-center">
-            <div
-              class="d-flex col-12 col-sm-12 col-lg-2 justify-content-sm-center  justify-content-lg-between justify-content-center">
-              <a class="navbar-brand"><img class="logo-principal-navbar"
-                  src="https://calypsobronte.github.io/accion-comunal/images/png/logo.png" alt="" /></a>
-            </div>
-            <% if (rol !=='encuestador' || rol !=='superadmin' || rol !=='secretaria' ) {%>
-              <div
-                class="d-flex col-12 col-sm-12  justify-content-lg-end  col-lg-10 justify-content-sm-center m-sm-2 m-lg-0 m-2 justify-content-center">
-                <a href="/informacion" class="btn btn-secondary"> Informacion</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/noticias" class="btn btn-secondary"> Noticias</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/login" class="btn btn-secondary"> Inicio de sesion</a>&nbsp;&nbsp;&nbsp;&nbsp;
-              </div>
-              <%}else {%>
-                <div
-                  class="d-flex col-12 col-sm-12  justify-content-lg-end  col-lg-10 justify-content-sm-center m-sm-2 m-lg-0 m-2 justify-content-center">
-                  <a href="/encuesta" class="btn btn-secondary"> Crear encuesta</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <a href="/prueba" class="btn btn-secondary"> Dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <a href="/logout" class="btn btn-secondary"> Cerrar sesion</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
-                <%}%>
-          </div>
-        </nav><br><br>
         <h4>No tienes permisos para acceder al contenido comunicate con el administrador de la plataforma</h4>
         <%}%>
           <%}%>

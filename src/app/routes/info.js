@@ -18,6 +18,31 @@ module.exports = app => {
         }
     })
 
+    app.get('/chart', (req, res) => {
+        connection.query("SELECT * FROM encuesta", (err, result) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).json(result);
+            }
+        })
+    })
+
+    app.get('/graficas', (req, res) => {
+        res.render('../views/chart.ejs');
+    })
+
+    app.get('/graficasdos', (req, res) => {
+        res.render('../views/chart-1.ejs');
+    })
+
+    app.get('/graficatres', (req, res) => {
+        res.render('../views/chart.2.ejs');
+    })
+    app.get('/graficacuatro', (req, res) => {
+        res.render('../views/chart.3.ejs');
+    })
+
     app.get('/informacion', (req, res) => {
         res.render('../views/informacion.ejs');
     })
