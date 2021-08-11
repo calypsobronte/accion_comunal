@@ -1,4 +1,6 @@
 # Aplicacion para la Accion Comunal de los tanques
+Este es un Proyecto de carácter Académico.
+Desarrollado como proyecto final de la formación en programación de software.
 
 ## Censapp
 
@@ -11,6 +13,19 @@ Sistematizar los datos que se tratan dentro del telecentro e implementar la tecn
 
 ### Link de la aplicacion
 <https://accion-comunal.herokuapp.com/>
+
+### Herramientas Tecnológicas
+- Backend
+  * Nodejs
+  * DB Mysql
+  * Express
+- Frontend
+ * EJS
+ * Bootstrap
+- Otras
+ * Git
+ * Heroku
+ * Github
 
 ### Instalación
 
