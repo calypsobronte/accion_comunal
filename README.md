@@ -1,10 +1,16 @@
 # Aplicacion para la Accion Comunal de los tanques
 
+## Censapp
+
 ### Descripcion del proyecto
 Censapp es un aplicativo que será una herramienta fundamental para cambiar la forma de trabajar del telecentro con lo llevan haciendo hace años atrás con los registros a mano lo cual podrán ya tenerlos digitalizados y guardados en un base de datos y tener las estadísticas al instante, podrán tener un registro de sus habitantes  y publicar información y noticias de interés para todos los habitantes
 
+### Objetivo general
+
+Sistematizar los datos que se tratan dentro del telecentro e implementar la tecnología como herramienta para agilizar procesos que son llevados a cabo dentro de la identidad
+
 ### Link de la aplicacion
-[accion-comunal.herokuapp.com/](accion-comunal.herokuapp.com/)
+<https://accion-comunal.herokuapp.com/>
 
 ### Instalación
 
