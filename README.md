@@ -3,6 +3,9 @@
 ### Descripcion del proyecto
 Censapp es un aplicativo que será una herramienta fundamental para cambiar la forma de trabajar del telecentro con lo llevan haciendo hace años atrás con los registros a mano lo cual podrán ya tenerlos digitalizados y guardados en un base de datos y tener las estadísticas al instante, podrán tener un registro de sus habitantes  y publicar información y noticias de interés para todos los habitantes
 
+### Link de la aplicacion
+[accion-comunal.herokuapp.com/](accion-comunal.herokuapp.com/)
+
 ### Instalación
 
 * Clona el repositorio por medio de git
